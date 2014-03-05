@@ -1,0 +1,13 @@
+#include <stdio.h>
+int main(){
+	int a=0,c=0,b=0;
+	do{
+		a = system("sox -r 16000 -t alsa default recording.flac silence 1 0.1 10% 1 1.5 10%");
+		if(a==0){
+			b = system("wget -q -U 'rate=16000' -O - 'http://www.google.com/speech-api/v1/recognize?lang=es&client=Mozilla/5.0' --post-file recording.flac --header='Content-Type: audio/x-flac; rate=16000'");
+			if(b==0) printf("master");
+		}
+	}while(1!=1);
+	printf("%d\n",a);
+	return 0;
+}
